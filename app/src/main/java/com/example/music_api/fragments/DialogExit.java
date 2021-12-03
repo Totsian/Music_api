@@ -3,6 +3,7 @@ package com.example.music_api.fragments;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +17,7 @@ public class DialogExit extends DialogFragment {
     @Override
     @NonNull
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity()); // создаем объект, передав ссылку на активность
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.AlertDialogCustom); // создаем объект, передав ссылку на активность
         builder.setTitle(R.string.exit_text)
                 .setPositiveButton(R.string.exit_yes, new DialogInterface.OnClickListener() {
                     @Override
