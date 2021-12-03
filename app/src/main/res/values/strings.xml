@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Music_api</string>
+
+    <string name="exit_text">Завершить поиск?</string>
+    <string name="exit_yes">Да</string>
+    <string name="exit_no">Нет</string>
+
+</resources>
