@@ -10,15 +10,19 @@ import android.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.music_api.OnClickListenerFragment;
 import com.example.music_api.R;
 
 public class FragmentSearch extends Fragment implements View.OnClickListener {
+
     OnClickListenerFragment onSelectedButtonListener;
     private SearchView search;
     private RecyclerView recyclerView;
+    private RecyclerAdapter recyclerAdapter;
+    private LinearLayoutManager llm;
 
     @Override
     public void onAttach(Context activity) {
@@ -42,6 +46,9 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
 
         search = searchView.findViewById(R.id.search);
         recyclerView = searchView.findViewById(R.id.recycler_v);
+
+        llm = new LinearLayoutManager(this.getActivity());
+        recyclerView.setLayoutManager(llm);
 
         return searchView;
     }
