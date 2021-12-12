@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.example.music_api.fragments.DialogExit;
+import com.example.music_api.fragments.FragmentNext;
 import com.example.music_api.fragments.FragmentSearch;
 import com.example.music_api.fragments.FragmentStart;
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerFr
     FragmentTransaction ft;
     FragmentStart fragmentStart;
     FragmentSearch fragmentSearch;
+    FragmentNext fragmentNext;
     DialogExit dialogExit;
 
     @Override
@@ -41,6 +43,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerFr
             FragmentManager manager = getSupportFragmentManager();
             dialogExit = new DialogExit();
             dialogExit.show(manager, "DialogExit");
+        } else if (btnIndex == 3){
+            ft = getSupportFragmentManager().beginTransaction();
+            fragmentNext = new FragmentNext();
+            ft.replace(R.id.container, fragmentNext);
+            ft.addToBackStack(null);
+            ft.commit();
         }
     }
 }
