@@ -20,6 +20,7 @@ import com.example.music_api.Albums;
 import com.example.music_api.App;
 import com.example.music_api.MusicApi;
 import com.example.music_api.OnClickListenerFragment;
+import com.example.music_api.OnItemClickListener;
 import com.example.music_api.R;
 
 import java.io.IOException;
@@ -61,15 +62,26 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
         View searchView = inflater.inflate(R.layout.fragment_search, container, false);
 
         musicApi = App.getApi();
-
+        callBack();
         search = searchView.findViewById(R.id.search);
 
         recyclerView = searchView.findViewById(R.id.recycler_v);
+        OnItemClickListener itemClickListener = new OnItemClickListener() {
+            @Override
+            public void onItemClick(Albums albums, int position) {
+                onSelectedButtonListener.onSelectedButton(3);
+            }
+        };
         llm = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(llm);
-        recyclerAdapter = new RecyclerAdapter(getActivity(), albums);
+        recyclerAdapter = new RecyclerAdapter(getActivity(), albums, itemClickListener);
         recyclerView.setAdapter(recyclerAdapter);
 
+
+        return searchView;
+    }
+
+    public void callBack() {
         musicApi.listAlbums().enqueue(new Callback<List<Albums>>() {
             @Override
             public void onResponse(Call<List<Albums>> call, Response<List<Albums>> response) {
@@ -82,10 +94,14 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(), "An error occurred during networking", Toast.LENGTH_SHORT).show();
             }
         });
-        return searchView;
     }
 
     @Override
     public void onClick(View view) {
+//        switch (view.getId()) {
+//            case R.id.name_item:
+//                onSelectedButtonListener.onSelectedButton(3);
+//                break;
+//        }
     }
 }
