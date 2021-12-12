@@ -67,7 +67,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
         recyclerView = searchView.findViewById(R.id.recycler_v);
         llm = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(llm);
-        recyclerAdapter = new RecyclerAdapter(albums);
+        recyclerAdapter = new RecyclerAdapter(getActivity(), albums);
         recyclerView.setAdapter(recyclerAdapter);
 
         musicApi.listAlbums().enqueue(new Callback<List<Albums>>() {
