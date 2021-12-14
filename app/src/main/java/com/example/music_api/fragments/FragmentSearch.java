@@ -31,9 +31,7 @@ public class FragmentSearch extends Fragment {
 
     OnClickListenerFragment onSelectedButtonListener;
     private RecyclerView recyclerView;
-    private RecyclerAdapter recyclerAdapter;
-    private LinearLayoutManager llm;
-    private List<Films> albums = new ArrayList<>();
+    private final List<Films> albums = new ArrayList<>();
     private static AnimeApi sAnimeApi;
 
     @Override
@@ -67,9 +65,9 @@ public class FragmentSearch extends Fragment {
             }
 
         };
-        llm = new LinearLayoutManager(this.getActivity());
+        LinearLayoutManager llm = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(llm);
-        recyclerAdapter = new RecyclerAdapter(getActivity(), albums, itemClickListener);
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), albums, itemClickListener);
         recyclerView.setAdapter(recyclerAdapter);
 
         return searchView;
