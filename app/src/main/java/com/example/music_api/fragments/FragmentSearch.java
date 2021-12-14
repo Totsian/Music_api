@@ -60,8 +60,13 @@ public class FragmentSearch extends Fragment {
         recyclerView = searchView.findViewById(R.id.recycler_v);
         OnItemClickListener itemClickListener = new OnItemClickListener() {
             @Override
-            public void onItemClick(Films albums, int position, String id) {
+            public void onItemClick(Films films, int position, String id) {
                 onSelectedButtonListener.filmId(3, id);
+            }
+
+            @Override
+            public void onImageClick(Films films, int position, String id) {
+                onSelectedButtonListener.imageId(4, id);
             }
 
         };

@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerFr
     FragmentSearch fragmentSearch;
     FragmentNext fragmentNext;
     DialogExit dialogExit;
+    ImageDialog imageDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,15 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerFr
             ft.replace(R.id.container, fragmentNext);
             ft.addToBackStack(null);
             ft.commit();
+        }
+    }
+
+    @Override
+    public void imageId(int btnIndex, String image) {
+        if (btnIndex == 4) {
+            ft = getSupportFragmentManager().beginTransaction();
+            imageDialog = new ImageDialog(image);
+            imageDialog.show(ft, "imageDialog");
         }
     }
 }

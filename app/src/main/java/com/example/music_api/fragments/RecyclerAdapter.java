@@ -42,10 +42,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.option_item.setText(film.getDirector());
         holder.name_item.setText(film.getTitle());
         Picasso.get().load(film.getImage()).resize(220, 280).into(holder.image_item);
+
         holder.name_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onItemClickListener.onItemClick(film, holder.getAdapterPosition(), film.getId());
+            }
+        });
+
+        holder.image_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemClickListener.onImageClick(film, holder.getAdapterPosition(), film.getImage());
             }
         });
     }

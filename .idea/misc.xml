@@ -14,8 +14,9 @@
         <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/dialog_back.xml" value="0.12777777777777777" />
         <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/fragment_next.xml" value="0.152" />
-        <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/fragment_search.xml" value="0.2" />
+        <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/fragment_search.xml" value="0.264" />
         <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/fragment_start.xml" value="0.264" />
+        <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/image_dialog.xml" value="0.17135416666666667" />
         <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/item_recycler.xml" value="0.27447916666666666" />
       </map>
     </option>
