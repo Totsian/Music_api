@@ -29,13 +29,8 @@ public class FragmentNext extends Fragment {
     private static final String TAG = "myLog";
     OnClickListenerFragment onSelectedButtonListener;
     private String filmId;
-    //    private List<OneFilm> filmInfo = new ArrayList<>();
-    private OneFilm oneFilm;
     private OneFilm film = new OneFilm();
     private static AnimeApi anime;
-//    private RecyclerView recyclerView;
-//    private RecyclerAdapterFilm adapter;
-//    private LinearLayoutManager llm;
 
     private ImageView imageFilm;
     private TextView title, originalTitle, originalTitleRomanised, description,
@@ -65,8 +60,10 @@ public class FragmentNext extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View nextV = inflater.inflate(R.layout.fragment_next, container, false);
+
         anime = RetrofitBuilder.getApi();
         updateData();
+
         imageFilm = nextV.findViewById(R.id.image_film);
         title = nextV.findViewById(R.id.title);
         originalTitle = nextV.findViewById(R.id.original_title);
@@ -77,26 +74,6 @@ public class FragmentNext extends Fragment {
         releaseDate = nextV.findViewById(R.id.release_date);
         runningTime = nextV.findViewById(R.id.running_time);
         score = nextV.findViewById(R.id.rt_score);
-        setData();
-        String str = film.toString();
-        Log.d(TAG, str);
-
-//        Picasso.get().load(film.getImage()).resize(220, 280).into(imageFilm);
-//        title.setText(film.getTitle());
-//        originalTitle.setText(oneFilm.getOriginalTitle());
-//        originalTitleRomanised.setText(infoFilm.getOriginalTitleRomanised());
-//        description.setText(infoFilm.getDescription());
-//        director.setText(infoFilm.getDirector());
-//        producer.setText(infoFilm.getProducer());
-//        releaseDate.setText(infoFilm.getReleaseDate());
-//        runningTime.setText(infoFilm.getRunningTime());
-//        score.setText(infoFilm.getRtScore());
-
-//        recyclerView = nextV.findViewById(R.id.recycler_film);
-//        llm = new LinearLayoutManager(this.getActivity());
-//        recyclerView.setLayoutManager(llm);
-//        adapter = new RecyclerAdapterFilm(getActivity(), film);
-//        recyclerView.setAdapter(adapter);
 
         return nextV;
     }
@@ -106,7 +83,7 @@ public class FragmentNext extends Fragment {
             @Override
             public void onResponse(Call<OneFilm> call, Response<OneFilm> response) {
                 film = response.body();
-                Log.d(TAG, response.body().toString());
+                setData();
             }
 
             @Override
@@ -118,15 +95,15 @@ public class FragmentNext extends Fragment {
 
     public void setData() {
         OneFilm oneFilm = film;
-//        Picasso.get().load(oneFilm.getImage()).resize(220, 280).into(imageFilm);
-//        title.setText(oneFilm.getTitle());
-//        originalTitle.setText(oneFilm.getOriginalTitle());
-//        originalTitleRomanised.setText(oneFilm.getOriginalTitleRomanised());
-//        description.setText(oneFilm.getDescription());
-//        director.setText(oneFilm.getDirector());
-//        producer.setText(oneFilm.getProducer());
-//        releaseDate.setText(oneFilm.getReleaseDate());
-//        runningTime.setText(oneFilm.getRunningTime());
-//        score.setText(oneFilm.getRtScore());
+        Picasso.get().load(oneFilm.getImage()).resize(220, 280).into(imageFilm);
+        title.setText(oneFilm.getTitle());
+        originalTitle.setText(oneFilm.getOriginalTitle());
+        originalTitleRomanised.setText(oneFilm.getOriginalTitleRomanised());
+        description.setText(oneFilm.getDescription());
+        director.setText(oneFilm.getDirector());
+        producer.setText(oneFilm.getProducer());
+        releaseDate.setText(oneFilm.getReleaseDate());
+        runningTime.setText(oneFilm.getRunningTime());
+        score.setText(oneFilm.getRtScore());
     }
 }
