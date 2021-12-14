@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,117 +10,122 @@
     android:layout_marginBottom="5dp"
     android:background="@drawable/round_layout">
 
-    <ImageView
-        android:id="@+id/image_film"
-        android:layout_width="200dp"
-        android:layout_height="280dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/title"
-        style="@style/text_next_frag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="48dp"
-        android:text="Title: Castle in the Sky"
-        app:layout_constraintStart_toEndOf="@+id/image_film"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/original_title"
-        style="@style/text_next_frag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:text="Original title: 天空の城ラピュタ"
-        app:layout_constraintStart_toEndOf="@+id/image_film"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+            <ImageView
+                android:id="@+id/image_film"
+                android:layout_width="200dp"
+                android:layout_height="280dp"
+                android:src="@mipmap/ic_launcher" />
 
-    <TextView
-        android:id="@+id/original_title_romanised"
-        style="@style/text_next_frag"
-        android:layout_width="200dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:text="Original title romanised: Tenkū no shiro Rapyuta"
-        android:textAlignment="textStart"
-        app:layout_constraintStart_toEndOf="@+id/image_film"
-        app:layout_constraintTop_toBottomOf="@+id/original_title" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/description"
-        style="@style/text_next_frag"
-        android:layout_width="384dp"
-        android:layout_height="365dp"
-        android:layout_marginTop="4dp"
-        android:text="Description: The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputa's science to make himself ruler of the world."
-        android:textAlignment="center"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_film" />
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/text_next_frag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Title: Castle in the Sky" />
 
-    <TextView
-        android:id="@+id/director"
-        style="@style/text_next_frag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:text="Director: Hayao Miyazaki"
-        app:layout_constraintStart_toEndOf="@+id/image_film"
-        app:layout_constraintTop_toBottomOf="@+id/original_title_romanised" />
+                <TextView
+                    android:id="@+id/original_title"
+                    style="@style/text_next_frag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Original title: 天空の城ラピュタ" />
 
-    <TextView
-        android:id="@+id/producer"
-        style="@style/text_next_frag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:text="Producer: Isao Takahata"
-        app:layout_constraintStart_toEndOf="@+id/image_film"
-        app:layout_constraintTop_toBottomOf="@+id/director" />
+                <TextView
+                    android:id="@+id/original_title_romanised"
+                    style="@style/text_next_frag"
+                    android:layout_width="200dp"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="10dp"
 
-    <TextView
-        android:id="@+id/release_date"
-        style="@style/text_next_frag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:text="Release date: 1986"
-        app:layout_constraintStart_toEndOf="@+id/image_film"
-        app:layout_constraintTop_toBottomOf="@+id/producer" />
+                    android:text="Original title romanised: Tenkū no shiro Rapyuta"
+                    android:textAlignment="textStart" />
 
-    <TextView
-        android:id="@+id/running_time"
-        style="@style/text_next_frag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:text="Running time: 124"
-        app:layout_constraintStart_toEndOf="@+id/image_film"
-        app:layout_constraintTop_toBottomOf="@+id/release_date" />
+                <TextView
+                    android:id="@+id/director"
+                    style="@style/text_next_frag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Director: Hayao Miyazaki" />
 
-    <TextView
-        android:id="@+id/rt_score"
-        style="@style/text_next_frag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:text="Score: 95"
-        app:layout_constraintStart_toEndOf="@+id/image_film"
-        app:layout_constraintTop_toBottomOf="@+id/running_time" />
+                <TextView
+                    android:id="@+id/producer"
+                    style="@style/text_next_frag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Producer: Isao Takahata" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/release_date"
+                    style="@style/text_next_frag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Release date: 1986" />
+
+                <TextView
+                    android:id="@+id/running_time"
+                    style="@style/text_next_frag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Running time: 124" />
+
+
+                <TextView
+                    android:id="@+id/rt_score"
+                    style="@style/text_next_frag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Score: 95" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_next"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_next">
+
+                <TextView
+                    android:id="@+id/description"
+                    style="@style/text_next_frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/round_next"
+                    android:text="Description: The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputa's science to make himself ruler of the world."
+                    android:textAlignment="center"
+                    android:textSize="20dp" />
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

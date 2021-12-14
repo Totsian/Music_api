@@ -10,9 +10,10 @@
         <entry key="..\:/PrPM/Music_api/app/src/main/res/drawable/gradient.xml" value="0.10462962962962963" />
         <entry key="..\:/PrPM/Music_api/app/src/main/res/drawable/ic_launcher_background.xml" value="0.290625" />
         <entry key="..\:/PrPM/Music_api/app/src/main/res/drawable/round_layout.xml" value="0.290625" />
+        <entry key="..\:/PrPM/Music_api/app/src/main/res/drawable/round_next.xml" value="0.290625" />
         <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/dialog_back.xml" value="0.12777777777777777" />
-        <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/fragment_next.xml" value="0.27447916666666666" />
+        <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/fragment_next.xml" value="0.1890625" />
         <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/fragment_search.xml" value="0.2" />
         <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/fragment_start.xml" value="0.264" />
         <entry key="..\:/PrPM/Music_api/app/src/main/res/layout/item_recycler.xml" value="0.27447916666666666" />

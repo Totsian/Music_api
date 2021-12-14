@@ -8,8 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="pink">#cf3578</color>
-    <color name="purple">#6b3895</color>
-    <color name="back">#BA6E8F</color>
+    <color name="pink">#00EFD1</color>
+    <color name="purple">#00ACEA</color>
+    <color name="back">#BAD4E3</color>
 
 </resources>
