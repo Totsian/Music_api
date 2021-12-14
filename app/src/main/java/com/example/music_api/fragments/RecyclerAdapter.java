@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.music_api.Albums;
-import com.example.music_api.OnItemClickListener;
+import com.example.music_api.api_class.Films;
+import com.example.music_api.interfaces.OnItemClickListener;
 import com.example.music_api.R;
 import com.squareup.picasso.Picasso;
 
@@ -21,10 +21,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     private final OnItemClickListener onItemClickListener;
     private final LayoutInflater inflate;
-    private final List<Albums> albums;
+    private final List<Films> films;
 
-    public RecyclerAdapter(Context context, List<Albums> albums, OnItemClickListener onItemClickListener) {
-        this.albums = albums;
+    public RecyclerAdapter(Context context, List<Films> albums, OnItemClickListener onItemClickListener) {
+        this.films = albums;
         this.inflate = LayoutInflater.from(context);
         this.onItemClickListener = onItemClickListener;
     }
@@ -38,23 +38,23 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
-        Albums album = albums.get(position);
-        holder.option_item.setText(album.getText());
-        holder.name_item.setText(album.getName());
-        Picasso.with(inflate.getContext()).load(album.getImg()).resize(190, 170).into(holder.image_item);
+        Films film = films.get(position);
+        holder.option_item.setText(film.getDirector());
+        holder.name_item.setText(film.getTitle());
+        Picasso.get().load(film.getImage()).resize(220, 280).into(holder.image_item);
         holder.name_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onItemClickListener.onItemClick(album, holder.getAdapterPosition());
+                onItemClickListener.onItemClick(film, holder.getAdapterPosition(), film.getId());
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        if (albums == null)
+        if (films == null)
             return 0;
-        return albums.size();
+        return films.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

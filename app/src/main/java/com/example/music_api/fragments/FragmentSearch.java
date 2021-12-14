@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,14 +14,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.music_api.Albums;
-import com.example.music_api.App;
-import com.example.music_api.MusicApi;
-import com.example.music_api.OnClickListenerFragment;
-import com.example.music_api.OnItemClickListener;
+import com.example.music_api.api_class.Films;
+import com.example.music_api.RetrofitBuilder;
+import com.example.music_api.interfaces.AnimeApi;
+import com.example.music_api.interfaces.OnClickListenerFragment;
+import com.example.music_api.interfaces.OnItemClickListener;
 import com.example.music_api.R;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,15 +28,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentSearch extends Fragment implements View.OnClickListener {
+public class FragmentSearch extends Fragment {
 
     OnClickListenerFragment onSelectedButtonListener;
     private SearchView search;
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
     private LinearLayoutManager llm;
-    private List<Albums> albums = new ArrayList<>();
-    private static MusicApi musicApi;
+    private List<Films> albums = new ArrayList<>();
+    private static AnimeApi sAnimeApi;
 
     @Override
     public void onAttach(Context activity) {
@@ -61,47 +58,38 @@ public class FragmentSearch extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View searchView = inflater.inflate(R.layout.fragment_search, container, false);
 
-        musicApi = App.getApi();
+        sAnimeApi = RetrofitBuilder.getApi();
         callBack();
         search = searchView.findViewById(R.id.search);
 
         recyclerView = searchView.findViewById(R.id.recycler_v);
         OnItemClickListener itemClickListener = new OnItemClickListener() {
             @Override
-            public void onItemClick(Albums albums, int position) {
-                onSelectedButtonListener.onSelectedButton(3);
+            public void onItemClick(Films albums, int position, String id) {
+                onSelectedButtonListener.filmId(3, id);
             }
+
         };
         llm = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(llm);
         recyclerAdapter = new RecyclerAdapter(getActivity(), albums, itemClickListener);
         recyclerView.setAdapter(recyclerAdapter);
 
-
         return searchView;
     }
 
     public void callBack() {
-        musicApi.listAlbums().enqueue(new Callback<List<Albums>>() {
+        sAnimeApi.listFilms().enqueue(new Callback<List<Films>>() {
             @Override
-            public void onResponse(Call<List<Albums>> call, Response<List<Albums>> response) {
+            public void onResponse(Call<List<Films>> call, Response<List<Films>> response) {
                 albums.addAll(response.body());
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(Call<List<Albums>> call, Throwable t) {
+            public void onFailure(Call<List<Films>> call, Throwable t) {
                 Toast.makeText(getActivity(), "An error occurred during networking", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    @Override
-    public void onClick(View view) {
-//        switch (view.getId()) {
-//            case R.id.name_item:
-//                onSelectedButtonListener.onSelectedButton(3);
-//                break;
-//        }
     }
 }

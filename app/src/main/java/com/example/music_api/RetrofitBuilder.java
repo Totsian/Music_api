@@ -1,15 +1,15 @@
 package com.example.music_api;
 
+import com.example.music_api.interfaces.AnimeApi;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class App {
-    static final String BASE_URL = "https://openwhyd.org";
-
-    public static MusicApi getApi() {
+public class RetrofitBuilder {
+    static final String BASE_URL = "https://ghibliapi.herokuapp.com";
+    public static AnimeApi getApi() {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -19,8 +19,8 @@ public class App {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        MusicApi musicApi = retrofit.create(MusicApi.class);
-        return musicApi;
+        AnimeApi animeApi = retrofit.create(AnimeApi.class);
+        return animeApi;
 
     }
 

@@ -10,8 +10,9 @@ import com.example.music_api.fragments.DialogExit;
 import com.example.music_api.fragments.FragmentNext;
 import com.example.music_api.fragments.FragmentSearch;
 import com.example.music_api.fragments.FragmentStart;
+import com.example.music_api.interfaces.OnClickListenerFragment;
 
-public class MainActivity extends AppCompatActivity implements OnClickListenerFragment{
+public class MainActivity extends AppCompatActivity implements OnClickListenerFragment {
 
     FragmentTransaction ft;
     FragmentStart fragmentStart;
@@ -43,9 +44,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListenerFr
             FragmentManager manager = getSupportFragmentManager();
             dialogExit = new DialogExit();
             dialogExit.show(manager, "DialogExit");
-        } else if (btnIndex == 3){
+        }
+    }
+
+    @Override
+    public void filmId(int btnIndex, String id) {
+        if (btnIndex == 3) {
             ft = getSupportFragmentManager().beginTransaction();
-            fragmentNext = new FragmentNext();
+            fragmentNext = new FragmentNext(id);
             ft.replace(R.id.container, fragmentNext);
             ft.addToBackStack(null);
             ft.commit();

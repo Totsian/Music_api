@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.music_api.OnClickListenerFragment;
+import com.example.music_api.interfaces.OnClickListenerFragment;
 import com.example.music_api.R;
 
 public class FragmentStart extends Fragment implements View.OnClickListener {
