@@ -94,7 +94,7 @@ public class FragmentNext extends Fragment {
 
     public void setData() {
         OneFilm oneFilm = film;
-        Picasso.get().load(oneFilm.getImage()).resize(220, 320).into(imageFilm);
+        Picasso.get().load(oneFilm.getImage()).resize(220, 400).into(imageFilm);
         title.setText(oneFilm.getTitle());
         originalTitle.setText(oneFilm.getOriginalTitle());
         originalTitleRomanised.setText(oneFilm.getOriginalTitleRomanised());
@@ -103,6 +103,6 @@ public class FragmentNext extends Fragment {
         producer.setText(oneFilm.getProducer());
         releaseDate.setText(oneFilm.getReleaseDate());
         runningTime.setText(oneFilm.getRunningTime());
-        score.setText("Rating: " + oneFilm.getRtScore());
+        score.setText(oneFilm.getRtScore());
     }
 }

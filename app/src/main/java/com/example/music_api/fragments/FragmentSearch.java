@@ -31,7 +31,6 @@ import retrofit2.Response;
 public class FragmentSearch extends Fragment {
 
     OnClickListenerFragment onSelectedButtonListener;
-    private SearchView search;
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
     private LinearLayoutManager llm;
@@ -60,7 +59,6 @@ public class FragmentSearch extends Fragment {
 
         sAnimeApi = RetrofitBuilder.getApi();
         callBack();
-        search = searchView.findViewById(R.id.search);
 
         recyclerView = searchView.findViewById(R.id.recycler_v);
         OnItemClickListener itemClickListener = new OnItemClickListener() {
