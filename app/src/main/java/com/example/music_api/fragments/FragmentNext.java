@@ -2,7 +2,6 @@ package com.example.music_api.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +26,7 @@ import retrofit2.Response;
 
 public class FragmentNext extends Fragment {
     OnClickListenerFragment onSelectedButtonListener;
-    private String filmId;
+    private final String filmId;
     private OneFilm film = new OneFilm();
     private static AnimeApi anime;
 
