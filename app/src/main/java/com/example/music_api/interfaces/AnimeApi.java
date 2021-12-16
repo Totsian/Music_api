@@ -8,11 +8,18 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import rx.Observable;
 
 public interface AnimeApi {
+//    @GET("/films")
+//    Call<List<Films>> listFilms();
+
     @GET("/films")
-    Call<List<Films>> listFilms();
+    Observable<List<Films>> listFilms();
+
+//    @GET("/films/{id}")
+//    Call<OneFilm> infoFilm(@Path("id") String id);
 
     @GET("/films/{id}")
-    Call<OneFilm> infoFilm(@Path("id") String id);
+    Observable<OneFilm> infoFilm(@Path("id") String id);
 }

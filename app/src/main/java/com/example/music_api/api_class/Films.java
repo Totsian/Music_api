@@ -1,18 +1,10 @@
 package com.example.music_api.api_class;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import javax.annotation.Generated;
-
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-//@Generated("jsonschema2pojo")
 public class Films {
 
     @SerializedName("id")

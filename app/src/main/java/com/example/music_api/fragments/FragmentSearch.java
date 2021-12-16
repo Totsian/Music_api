@@ -23,15 +23,15 @@ import com.example.music_api.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class FragmentSearch extends Fragment {
 
     OnClickListenerFragment onSelectedButtonListener;
     private RecyclerView recyclerView;
-    private final List<Films> albums = new ArrayList<>();
+    private List<Films> filmsList;
     private static AnimeApi sAnimeApi;
 
     @Override
@@ -55,6 +55,7 @@ public class FragmentSearch extends Fragment {
         View searchView = inflater.inflate(R.layout.fragment_search, container, false);
 
         sAnimeApi = RetrofitBuilder.getApi();
+        filmsList = new ArrayList<>();
         callBack();
 
         recyclerView = searchView.findViewById(R.id.recycler_v);
@@ -72,24 +73,47 @@ public class FragmentSearch extends Fragment {
         };
         LinearLayoutManager llm = new LinearLayoutManager(this.getActivity());
         recyclerView.setLayoutManager(llm);
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), albums, itemClickListener);
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(getActivity(), filmsList, itemClickListener);
         recyclerView.setAdapter(recyclerAdapter);
 
         return searchView;
     }
 
     public void callBack() {
-        sAnimeApi.listFilms().enqueue(new Callback<List<Films>>() {
-            @Override
-            public void onResponse(Call<List<Films>> call, Response<List<Films>> response) {
-                albums.addAll(response.body());
-                recyclerView.getAdapter().notifyDataSetChanged();
-            }
+        sAnimeApi.listFilms()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<Films>>() {
+                    @Override
+                    public void onCompleted() {
+                        Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
+                    }
 
-            @Override
-            public void onFailure(Call<List<Films>> call, Throwable t) {
-                Toast.makeText(getActivity(), "An error occurred during networking", Toast.LENGTH_SHORT).show();
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(getActivity(), "ERROR", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onNext(List<Films> films) {
+                        filmsList.addAll(films);
+                        recyclerView.getAdapter().notifyDataSetChanged();
+                    }
+                });
+
+//        sAnimeApi.listFilms().enqueue(new Callback<List<Films>>() {
+//            @Override
+//            public void onResponse(Call<List<Films>> call, Response<List<Films>> response) {
+//                films.addAll(response.body());
+//                recyclerView.getAdapter().notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Films>> call, Throwable t) {
+//                Toast.makeText(getActivity(), "An error occurred during networking", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+
     }
 }

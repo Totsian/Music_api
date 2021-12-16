@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,14 +19,14 @@ import com.example.music_api.interfaces.OnClickListenerFragment;
 import com.example.music_api.R;
 import com.squareup.picasso.Picasso;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class FragmentNext extends Fragment {
     OnClickListenerFragment onSelectedButtonListener;
     private final String filmId;
-    private OneFilm film = new OneFilm();
+    private OneFilm film;
     private static AnimeApi anime;
 
     private ImageView imageFilm;
@@ -58,7 +57,7 @@ public class FragmentNext extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View nextV = inflater.inflate(R.layout.fragment_next, container, false);
-
+        film = new OneFilm();
         anime = RetrofitBuilder.getApi();
         updateData();
 
@@ -77,18 +76,39 @@ public class FragmentNext extends Fragment {
     }
 
     public void updateData() {
-        anime.infoFilm(filmId).enqueue(new Callback<OneFilm>() {
-            @Override
-            public void onResponse(Call<OneFilm> call, Response<OneFilm> response) {
-                film = response.body();
-                setData();
-            }
+        anime.infoFilm(filmId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<OneFilm>() {
+                    @Override
+                    public void onCompleted() {
 
-            @Override
-            public void onFailure(Call<OneFilm> call, Throwable t) {
-                Toast.makeText(getActivity(), "An error occurred during networking", Toast.LENGTH_SHORT).show();
-            }
-        });
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(OneFilm oneFilm) {
+                        film = oneFilm;
+                        setData();
+                    }
+                });
+
+//        anime.infoFilm(filmId).enqueue(new Callback<OneFilm>() {
+//            @Override
+//            public void onResponse(Call<OneFilm> call, Response<OneFilm> response) {
+//                film = response.body();
+//                setData();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<OneFilm> call, Throwable t) {
+//                Toast.makeText(getActivity(), "An error occurred during networking", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     public void setData() {
